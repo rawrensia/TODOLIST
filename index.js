@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', e => {
     });*/
 
     // Print user input on the list item
-    
     taskInput.addEventListener('keyup', e=> { 
         if (e.keyCode === 13){ // If user presses enter
             const newTodoItem = document.createElement('li');
