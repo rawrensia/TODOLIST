@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', e => {
             todoListContainer.appendChild(newTodoItem);
             
             // Add edit button
-            var edit = document.createElement("button");
+            var edit = document.createElement("span");
             var editTxt = document.createTextNode("Edit");
             edit.className = "edit";
             edit.appendChild(editTxt);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', e => {
 var myNodelist = document.getElementsByTagName('li');
 var i;
 for (i = 0; i < myNodelist.length; i++) {
-    var edit = document.createElement("button");
+    var edit = document.createElement("span");
     var editTxt = document.createTextNode("Edit");
     edit.className = "edit";
     edit.appendChild(editTxt);
