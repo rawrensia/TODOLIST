@@ -74,6 +74,39 @@ document.addEventListener('DOMContentLoaded', e => {
 
 });
 
+data.forEach(item  =>{
+    console.log(item);
+    const newTodoItem = document.createElement('li');
+    newTodoItem.classList += 'list-group-item';
+    newTodoItem.setAttribute('id', 'todolist');
+    newTodoItem.textContent = item;
+    todoListContainer.appendChild(newTodoItem);
+
+    // Add edit button
+    var edit = document.createElement("span");
+    var editTxt = document.createTextNode("Edit");
+    edit.className = "edit";
+    edit.appendChild(editTxt);
+    newTodoItem.appendChild(edit);
+    
+    // Add close button
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    newTodoItem.appendChild(span);
+
+    var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                    //how to remove this specific item from localStorage?
+                    }
+                }
+});
+
 // Create a "close" and "edit" button and append it to each list item
 var myNodelist = document.getElementsByTagName('li');
 var i;
@@ -106,29 +139,7 @@ var list = document.querySelector('ul');
         ev.target.classList.toggle('checked');
     }, false);
 
-    data.forEach(item  =>{
-        console.log(item);
-        const newTodoItem = document.createElement('li');
-        newTodoItem.classList += 'list-group-item';
-        newTodoItem.setAttribute('id', 'todolist');
-        newTodoItem.textContent = item;
-        todoListContainer.appendChild(newTodoItem);
     
-        // Add edit button
-        var edit = document.createElement("span");
-        var editTxt = document.createTextNode("Edit");
-        edit.className = "edit";
-        edit.appendChild(editTxt);
-        newTodoItem.appendChild(edit);
-        
-        // Add close button
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        newTodoItem.appendChild(span);
-    
-    });
 
 button.addEventListener('click', function (){
     localStorage.clear();
