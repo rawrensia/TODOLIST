@@ -1,29 +1,39 @@
 document.addEventListener('DOMContentLoaded', e => {
     
     // Do something here
-    const todoList = [
+    /*const todoList = [
         'Buy ice cream',
         'Buy sushi',
         'Buy fish'
-    ];
+    ];*/
+
     const todoListContainer = document.querySelector('#task-list-container > ul.list-group');
+    const ul = document.querySelector('ul');
+    const button = document.querySelector('button');
+    const taskInput = document.querySelector('#task-name-input');
     
-    todoList.map(value => {
+    let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    const data = JSON.parse(localStorage.getItem('items'));
+
+    /*todoList.map(value => {
         const newTodoItem = document.createElement('li');
         newTodoItem.classList += 'list-group-item';
         newTodoItem.setAttribute('id', 'todolist');
         newTodoItem.textContent = value;
         todoListContainer.appendChild(newTodoItem);
-    });
+    });*/
 
     // Print user input on the list item
-    const taskInput = document.querySelector('#task-name-input');
+    
     taskInput.addEventListener('keyup', e=> { 
         if (e.keyCode === 13){ // If user presses enter
             const newTodoItem = document.createElement('li');
             newTodoItem.classList += 'list-group-item';
             newTodoItem.setAttribute('id', 'todolist');
             newTodoItem.textContent = taskInput.value;
+            itemsArray.push(taskInput.value);
+            localStorage.setItem('items', JSON.stringify(itemsArray));
             todoListContainer.appendChild(newTodoItem);
             
             // Add edit button
@@ -97,5 +107,35 @@ var list = document.querySelector('ul');
         ev.target.classList.toggle('checked');
     }, false);
 
+    data.forEach(item  =>{
+        console.log(item);
+        const newTodoItem = document.createElement('li');
+        newTodoItem.classList += 'list-group-item';
+        newTodoItem.setAttribute('id', 'todolist');
+        newTodoItem.textContent = item;
+        todoListContainer.appendChild(newTodoItem);
+    
+        // Add edit button
+        var edit = document.createElement("span");
+        var editTxt = document.createTextNode("Edit");
+        edit.className = "edit";
+        edit.appendChild(editTxt);
+        newTodoItem.appendChild(edit);
+        
+        // Add close button
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        newTodoItem.appendChild(span);
+    
+    });
+
+button.addEventListener('click', function (){
+    localStorage.clear();
+    while (ul.firstChild){
+        ul.removeChild(ul.firstChild);
+    }
+});
 });
 

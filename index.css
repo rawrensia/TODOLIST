@@ -87,3 +87,15 @@ ul li.checked::before {
 label {
     font-size: 1em;
 }
+
+.clear{
+    background-color: #E3459E;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    display: table-cell;
+    font-size: 13px;
+    font-family: sans-serif;
+    border-radius: 17px;
+}
